@@ -10,7 +10,7 @@
     <label style="padding-right: 6px;">Columns:</label>
     <select v-model="numGalleryColumns">
       <option
-        v-for="n in numGalleryColumnOptions"
+        v-for="n in maxGalleryColumns"
         :key="n"
         :value="n"
       >
@@ -41,20 +41,30 @@ export default {
     return {
       photos: [],
       numGalleryColumns: 3,
+      maxGalleryColumns: 5,
     };
   },
   computed: {
-    numGalleryColumnOptions() {
-      const options = [];
-      for (let i = 2; i <= 5; i++) {
-        options.push(i);
-      }
-      return options;
+    width() {
+      return window.innerWidth;
     },
   },
   async mounted() {
     this.photos = await ky.get(PHOTOS_URL).json();
     this.photos.sort((a, b) => new Date(a.mtime) < new Date(b.mtime));
+    this.numGalleryColumns = this.calcNumColumns(window.innerWidth);
+    window.addEventListener('resize', () => {
+      this.numGalleryColumns = this.calcNumColumns(window.innerWidth);
+    });
+  },
+  methods: {
+    calcNumColumns(width) {
+      const maxColumnWidth = 500;
+      return Math.min(
+        this.maxGalleryColumns,
+        Math.floor(width / maxColumnWidth) + 1,
+      );
+    },
   },
 };
 </script>
