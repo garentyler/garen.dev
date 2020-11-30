@@ -11,6 +11,7 @@
     </router-link>
     <a href="https://github.com/garentyler">GitHub</a>
     <router-link to="/code">Code</router-link>
+    <router-link to="/photos">Photography</router-link>
     <a href="mailto:garentyler@gmail.com">Contact</a>
     <a
       class="right"
