@@ -3,7 +3,8 @@
     <h1>Photography</h1>
     <Container>
       <Paragraph>
-        Shot on iPhone Xs, iPhone 12, and Sony Alpha a6000 with 16-50mm kit lens.
+        Shot on iPhone Xs, iPhone 12, and Sony Alpha a6000 with 16-50mm kit lens.<br>
+        Click each picture for full quality, prints are available via contacting me.
       </Paragraph>
     </Container>
     <hr>
@@ -50,8 +51,29 @@ export default {
     },
   },
   async mounted() {
-    this.photos = await ky.get(PHOTOS_URL).json();
-    this.photos.sort((a, b) => new Date(a.mtime) < new Date(b.mtime));
+    const fullPhotos = [];
+    const smallPhotos = [];
+    const photos = await ky.get(PHOTOS_URL).json();
+    photos.forEach((p) => {
+      const nameWithoutExtension = p.name.split('.').slice(0, -1).join('.');
+      const extension = p.name.split('.').pop();
+      if (nameWithoutExtension.slice(-6) === '-small') {
+        smallPhotos.push({
+          ...p,
+          actualName: `${nameWithoutExtension.slice(0, -6)}.${extension}`,
+        });
+      } else {
+        fullPhotos.push(p);
+      }
+    });
+    this.photos = fullPhotos.map((fullSize) => {
+      const smallSize = smallPhotos.find((sm) => sm.actualName === fullSize.name);
+      return {
+        name: fullSize?.name || smallSize?.name,
+        fullSize: fullSize?.name || smallSize?.name,
+        smallSize: smallSize?.name || fullSize?.name,
+      };
+    });
     this.numGalleryColumns = this.calcNumColumns(window.innerWidth);
     window.addEventListener('resize', () => {
       this.numGalleryColumns = this.calcNumColumns(window.innerWidth);

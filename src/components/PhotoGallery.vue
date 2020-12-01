@@ -9,12 +9,13 @@
       <a
         v-for="photo in column"
         :key="photo.name"
-        :href="`${PHOTOS_URL}/${photo.name}`"
+        :href="`${PHOTOS_URL}/${photo.fullSize}`"
       >
         <img
           class="gallery-image"
-          :src="`${PHOTOS_URL}/${photo.name}`"
+          :src="`${PHOTOS_URL}/${photo.smallSize || photo.fullSize}`"
           :alt="photo.name"
+          loading="lazy"
         >
       </a>
     </div>
@@ -46,12 +47,9 @@ export default {
       for (let i = 0; i < this.numCols; i++) {
         cols.push([]);
       }
-      // console.log(cols);
       this.photos.forEach((p, i) => {
-        // console.log(`${p.name} (${i}) goes in column ${i % this.numCols}`);
         cols[i % this.numCols].push(p);
       });
-      // console.log(cols);
       return cols;
     },
     columnStyle() {
