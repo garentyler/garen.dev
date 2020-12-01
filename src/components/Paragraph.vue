@@ -18,5 +18,15 @@ export default {};
     text-align: center;
     max-width: 50vw;
   }
+  @media screen and (max-width: 1200px) {
+    p {
+      max-width: 75vw;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    p {
+      max-width: 90vw;
+    }
+  }
 }
 </style>

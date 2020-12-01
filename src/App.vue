@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Nav />
+    <Nav :items="navItems" />
     <transition
       name="fade"
       mode="out-in"
@@ -17,6 +17,32 @@ export default {
   components: {
     Nav,
   },
+  data() {
+    return {
+      navItems: [
+        {
+          link: 'https://github.com/garentyler',
+          label: 'GitHub',
+          routerLink: false,
+        },
+        {
+          link: '/code',
+          label: 'Code',
+          routerLink: true,
+        },
+        {
+          link: '/photos',
+          label: 'Photography',
+          routerLink: true,
+        },
+        {
+          link: 'mailto:garentyler@gmail.com',
+          label: 'Contact',
+          routerLink: false,
+        },
+      ],
+    };
+  },
 };
 </script>
 
@@ -27,19 +53,13 @@ body {
   padding: 0px !important;
   width: 100% !important;
   height: 100% !important;
-
-  // Light theme.
-  // background-color: #f2f2f2;
-  // color: #2c3e50;
-
-  // Dark theme.
-  // background-color: #222;
-  // color: #f2f2f2;
 }
+
 * {
   margin: 0px;
   padding: 0px;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,11 +76,13 @@ body {
     margin: 50px;
     font-size: 50px;
   }
+
   h2 {
     padding: 0px;
     margin: 30px;
     font-size: 40px;
   }
+
   h3 {
     padding: 0px;
     margin: 20px;
@@ -75,6 +97,7 @@ body {
     max-width: 50%;
     border: 1px solid #bbb;
   }
+
   .smallhr {
     margin-left: auto;
     margin-right: auto;
@@ -86,6 +109,7 @@ body {
   .fade-leave-active {
     transition: all 0.5s !important;
   }
+
   .fade-enter,
   .fade-leave-to {
     opacity: 0 !important;
