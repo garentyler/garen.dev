@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="nav dark-theme">
-      <router-link to="/">
+      <a @click="onItemClick({ link: '/', label: 'G logo', routerLink: true })">
         <img class="G_logo" alt="My logo" src="@/assets/G_logo.svg" />
-      </router-link>
+      </a>
       <span v-if="!mobileView" class="items">
         <a
           v-for="item in items"
           :key="item.label"
-          @click="onItemClick(item).preventDefault"
+          @click="onItemClick(item)"
         >
           {{ item.label }}
         </a>
