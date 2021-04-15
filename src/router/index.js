@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Main from '@/views/Main.vue';
 import Code from '@/views/Code.vue';
 import Photography from '@/views/Photography.vue';
+import Stroop from '@/views/Stroop.vue';
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,10 @@ export default new VueRouter({
     {
       path: '/photos',
       component: Photography,
+    },
+    {
+      path: '/stroop',
+      component: Stroop,
     },
   ],
 });
