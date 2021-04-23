@@ -15,7 +15,7 @@ export default {
 
 <style scoped lang="scss">
 p {
-  font-size: 8em;
+  font-size: 6em;
   margin: 0px;
   padding: 0px;
 }
