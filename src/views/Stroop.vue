@@ -34,7 +34,7 @@ export default {
     return {
       colorIndex: 0,
       textIndex: 0,
-      colorList: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+      colorList: ['red', 'yellow', 'green', 'blue'],
       info: [],
       currentTime: null,
       started: false,
@@ -57,8 +57,8 @@ export default {
       /* eslint-enable */
     },
     setRandomText() {
-      this.colorIndex = Math.floor(6 * Math.random());
-      this.textIndex = Math.floor(6 * Math.random());
+      this.colorIndex = Math.floor(this.colorList.length * Math.random());
+      this.textIndex = Math.floor(this.colorList.length * Math.random());
     },
     startTest() {
       this.setRandomText();
