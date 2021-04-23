@@ -4,7 +4,12 @@
     <Paragraph>
       <!-- Before/who-->
       <div v-if="state == 0">
-        <p>Select the color of the text shown.</p><br>
+        <p>
+          You will be shown a colored word, and your task is to answer with the
+          color of the word. The color of the word and the text of the word may
+          be different. After you answer your age here, the ten questions should
+          take about a minute to complete.
+        </p><br>
         <select name="age" v-model="age">
           <option :value="null">Please answer your age.</option>
           <option v-for="n in 100" :key="n" :value="n">{{ n }}</option>
