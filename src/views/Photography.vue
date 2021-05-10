@@ -74,12 +74,27 @@ export default {
         smallSize: smallSize?.name || fullSize?.name,
       };
     });
+    this.photos = this.shuffle(this.photos);
     this.numGalleryColumns = this.calcNumColumns(window.innerWidth);
     window.addEventListener('resize', () => {
       this.numGalleryColumns = this.calcNumColumns(window.innerWidth);
     });
   },
   methods: {
+    shuffle(arr) {
+      // Stolen from https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array.
+      const a = arr;
+      let j;
+      let x;
+      let i;
+      for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+      }
+      return a;
+    },
     calcNumColumns(width) {
       const maxColumnWidth = 500;
       return Math.min(
