@@ -3,7 +3,7 @@
     <h1>Photography</h1>
     <Container>
       <Paragraph>
-        Shot on iPhone Xs, iPhone 12, and Sony Alpha a6000 with 16-50mm kit lens.<br>
+        Shot on iPhone Xs, iPhone 12, DJI Mavic Air 2, and Sony Alpha a6000 with 16-50mm kit lens.<br>
         Click each picture for full quality, prints are available via contacting me.
       </Paragraph>
     </Container>
